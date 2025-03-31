@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_CONN=host=db user=postgres password=secret dbname=swiftcodes sslmode=disable
+      - TEST_DB_CONN=host=db_test user=postgres password=secret dbname=swiftcodes_test sslmode=disable
+    depends_on:
+      - db
+      - db_test
+
+  app_test:
+    image: golang:1.22-alpine
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: go test ./...
+    environment:
+      - TEST_DB_CONN=host=db_test user=postgres password=secret dbname=swiftcodes_test sslmode=disable
+    depends_on:
+      - db_test
+
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: swiftcodes
+    ports:
+      - "5432:5432"
+
+  db_test:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: swiftcodes_test
+    ports:
+      - "5433:5432"
