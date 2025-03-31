@@ -69,7 +69,7 @@ swift-codes/
 
 ### Local Setup
 1. **Clone the Repository:**  
-   ```git clone https://github.com/<your-username>/swift-codes.git```  
+   ```git clone https://github.com/klark142/SWIFT-codes-API.git```  
    ```cd swift-codes```
 2. **Set Up the Database Locally (Optional):**  
    Install PostgreSQL locally and create two databases: one for production (`swiftcodes`) and one for testing (`swiftcodes_test`).
@@ -82,7 +82,7 @@ swift-codes/
 
 ### Docker Setup
 1. **Clone the Repository:**  
-   `git clone https://github.com/<your-username>/swift-codes.git`  
+   `git clone https://github.com/klark142/SWIFT-codes-API.git`  
    `cd swift-codes`
 2. **Build and Run with Docker Compose:**  
    `docker-compose up --build`
